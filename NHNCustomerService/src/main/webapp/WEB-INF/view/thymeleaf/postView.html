@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>유저 게시물 조회</title>
+</head>
+<body>
+<span th:if="${param.admin == yes}">
+            제목: <span th:text="${post.title}"/><br/>
+            분류: <span th:text="${post.classification}"/><br/>
+            본문: <span th:text="${post.content}"/><br/>
+            답변여부: <span th:text="${post.answerStatus}"/><br/>
+                <img th:src="|/images/${post.id}|" width="100" height="100"/><br/>
+            파일: <span th:text="${post.fileName}"/> <br />
+            담당자: <span th:text="${post.csName}"/><br/>
+            답변내용: <span th:text="${post.answerText}"/><br/>
+            답변일시: <span th:text="${post.answerTime}"/><br/>
+            <a href="/post/postList">
+                <span>문의목록</span>
+            </a><br/>
+</span>
+<span th:unless="${param.admin == yes}">
+    제목: <span th:text="${post.title}"/><br/>
+            분류: <span th:text="${post.classification}"/><br/>
+            본문: <span th:text="${post.content}"/><br/>
+            답변여부: <span th:text="${post.answerStatus}"/><br/>
+                <img th:src="|/images/${post.id}|" width="100" height="100"/><br/>
+            파일: <span th:text="${post.fileName}"/> <br />
+            담당자: <span th:text="${post.csName}"/><br/>
+            답변내용: <span th:text="${post.answerText}"/><br/>
+            답변일시: <span th:text="${post.answerTime}"/><br/>
+            <a href="/post/postList?admin==yes">
+                <span>문의목록</span>
+            </a><br/>
+    <a th:href ="@{'/post/' + ${postId}+ '/answer?admin==yes'}">
+        <span>답변하기</span>
+    </a><br/>
+</span>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>제목</th>
+        <th>분류</th>
+        <th>작성일시</th>
+        <th>답변여부</th>
+    </tr>
+    <span th:unless="${param.admin == yes}">
+    <tr th:each="post : ${answerList}">
+        <td><a href="postView.html" th:href="@{'/post/' + ${post.id} + '/?admin==yes'}" th:text="${post.title}"/></td>
+        <td th:text="${post.classification}"></td>
+        <td th:text="${post.postTime}"></td>
+        <td th:text="${post.answerStatus}"></td>
+    </tr>
+    </span>
+    <span th:if="${param.admin == yes }">
+    <tr th:each="post : ${postList}">
+        <td><a href="postView.html" th:href="@{'/post/' + ${post.id}}" th:text="${post.title}"/></td>
+        <td th:text="${post.classification}"></td>
+        <td th:text="${post.postTime}"></td>
+        <td th:text="${post.answerStatus}"></td>
+
+    </tr>
+    </span>
+</table>
+</body>
+</html>
